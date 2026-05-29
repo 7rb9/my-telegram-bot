@@ -67,7 +67,7 @@ def log_user(user):
 def handle_banned(message):
     bot.reply_to(message, "❌ نعتذر منك، لقد تم حظرك من استخدام هذا البوت.")
 
-@bot.message_handler(commands=["stats", "ban", "unban"], func=lambda message: message.from_user.id == ADMIN_ID)
+@bot.message_handler(commands=["stats", "ban", "unban", "logs"], func=lambda message: message.from_user.id == ADMIN_ID)
 def admin_commands(message):
     command = message.text.split()
     cmd_name = command[0].lower()
@@ -92,6 +92,12 @@ def admin_commands(message):
         target_id = command[1].strip()
         unban_user(target_id)
         bot.reply_to(message, f"✅ تم إلغاء الحظر عن المستخدم صاحب الآيدي `{target_id}`.")
+    elif cmd_name == "/logs":
+        if os.path.exists(LOG_FILE):
+            with open(LOG_FILE, "rb") as f:
+                bot.send_document(message.chat.id, f)
+        else:
+            bot.reply_to(message, "❌ ملف السجلات فارغ أو غير موجود.")
 
 @bot.message_handler(commands=["start"])
 def send_welcome(message):
