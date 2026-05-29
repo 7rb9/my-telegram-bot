@@ -4,7 +4,7 @@ import requests
 import telebot
 import yt_dlp
 
-TOKEN = "8875076734:AAEsjJQxsghn-PasWEtmMC42iMuvuIdc5FI"
+TOKEN = "8875076734:AAFUBO4YjVgkdzdC5E4d0RhLjL6ScN2N6Yw"
 ADMIN_ID = 539671493  # حسابك أنت يا رامي كمالك للبوت
 bot = telebot.TeleBot(TOKEN)
 
